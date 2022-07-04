@@ -5,7 +5,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
 import xarray as xr
-import keras
+from tensorflow import keras
+
 
 n = 1000
 t = np.linspace(0,9*np.pi,n)

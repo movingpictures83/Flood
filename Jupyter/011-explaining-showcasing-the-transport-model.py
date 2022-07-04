@@ -4,10 +4,12 @@ import datetime as dt
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
-from dask_ml.preprocessing import StandardScaler
-from dask_ml.decomposition import PCA
-
 import dask
+#from dask_ml.preprocessing import StandardScaler
+#from dask_ml.decomposition import PCA
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 dask.config.set(scheduler='threading')
 
 import xarray as xr

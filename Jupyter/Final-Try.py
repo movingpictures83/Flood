@@ -1,3 +1,10 @@
+# Based from the tutorial of Jason Brownlee on Recurrent Neural Networks
+from __future__ import print_function
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
 plt.legend(loc='best')
 plt.show()
 
@@ -8,10 +15,7 @@ dataset.columns
 
 # HOLT'S WINTER MODEL
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
 
 #df = pd.read_csv('rajahmundry_finall.csv',parse_dates=['Month'],index_col='Month')
 #df = pd.read_csv('rajahmundry_finall.csv')
@@ -39,10 +43,7 @@ print(rms)
 
 # SARIMA MODEL
 
-# Based from the tutorial of Jason Brownlee on Recurrent Neural Networks
-%matplotlib inline
 
-from __future__ import print_function
 
 import os
 os.environ["THEANO_FLAGS"] = "mode=FAST_RUN,device=gpu,floatX=float32"

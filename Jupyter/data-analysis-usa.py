@@ -4,13 +4,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 import xarray as xr
+import sys
 
 import dask
 dask.config.set(scheduler='processes')
 
 from dask.diagnostics import ProgressBar
-import link_src
-from aux.plot import Map
+#import link_src
+sys.path.append('../../')
+from ml_flood.python.misc.plot import Map
 
 xar = xr.open_mfdataset('../data/usa/*precip*.nc')
 
