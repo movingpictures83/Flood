@@ -1,6 +1,4 @@
 # Based from the tutorial of Jason Brownlee on Recurrent Neural Networks
-%matplotlib inline
-
 from __future__ import print_function
 
 import os
@@ -24,7 +22,8 @@ plt.style.use('ggplot')
 np.random.seed(10)
 
 #Use the flood_data.csv dataset
-dataframe = pandas.read_csv('dataset/flood_train.csv', usecols=[1], engine='python', skipfooter=3)
+
+dataframe = pandas.read_csv('../lstm-flood-prediction/dataset/flood_train.csv', usecols=[1], engine='python', skipfooter=3)
 dataset   = dataframe.values
 dataset   = dataset.astype('float32')
 dataframe.head()

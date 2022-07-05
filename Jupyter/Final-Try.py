@@ -8,8 +8,7 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing
 plt.legend(loc='best')
 plt.show()
 
-dataset.columns = ['num', 'Date', 'Time', 'Temperature', 'Wind', 'Pressure',
-       'Humidity', 'Precipation', 'Heavyrainfall', 'LMH']
+dataset.columns = ['num', 'Date', 'Time', 'Temperature', 'Wind', 'Pressure', 'Humidity', 'Precipation', 'Heavyrainfall', 'LMH']
 
 dataset.columns
 

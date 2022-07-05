@@ -5,7 +5,9 @@ import xarray as xr
 import geopandas
 from rasterio import features
 from affine import Affine
-from python.aux.utils import calc_area
+import sys
+sys.path.append('../../')
+from .utils import calc_area
 np.seterr(divide='ignore', invalid='ignore')
 
 """Contains methods for the flowmodel (transport model & local model)"""
