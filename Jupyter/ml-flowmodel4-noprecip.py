@@ -340,8 +340,8 @@ plt.gca().set_xlim(y_valid_pred.time.values[0], y_valid_pred.time.values[-1])
 def to_5yr(dis):
     return dis/glofas_rl['rl5'].sel(latitude=dis.latitude, longitude=dis.longitude)
 
-((y_train_pred-y_train)/y_train*100).plot(label=)
-X_train.max('features').plot(label='max_feature')
+print(((y_train_pred-y_train)/y_train*100).plot(label=''))
+print(X_train.max('features').plot(label='max_feature'))
 
 ((y_valid_pred-y_valid)/y_valid*100).plot()
 
