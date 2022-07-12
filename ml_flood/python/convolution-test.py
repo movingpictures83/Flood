@@ -5,7 +5,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
 import xarray as xr
-import keras
+import tensorflow.keras
 
 n = 1000
 t = np.linspace(0,9*np.pi,n)
@@ -39,9 +39,9 @@ for i in range(1,len(y)):
     
 plt.plot(y)
 
-from keras.layers import Dense
-from keras.models import Input, Model
-from keras.preprocessing.sequence import TimeseriesGenerator
+from tensorflow.keras.layers import Dense
+from tensorflow.keras import Input, Model
+from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
 from tcn import TCN
 
 batch_size = None
@@ -73,19 +73,19 @@ plt.plot(Xt[:,:,0])
 
 m.fit(Xt, yt, epochs=30, validation_split=0.2)
 
-model = keras.models.Sequential()
+model = tensorflow.keras.models.Sequential()
 
 
 kernel_size=10
 filters=10  # -> full input = 100 length
 
-model.add(keras.layers.Conv1D(filters, kernel_size, input_shape=(100, 1)))
+model.add(tensorflow.keras.layers.Conv1D(filters, kernel_size, input_shape=(100, 1)))
 
 
 # opt = keras.optimizers.Adadelta(lr=1, rho=0.95, epsilon=0.5, decay=0.0)
 # opt = keras.optimizers.RMSprop()
 # opt = keras.optimizers.SGD()
-opt = keras.optimizers.Adam()
+opt = tensorflow.keras.optimizers.Adam()
 
 model.compile(loss='mse', optimizer=opt)
 

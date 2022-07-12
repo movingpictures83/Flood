@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import xarray as xr
-from utils_flowmodel import shift_and_aggregate
+from utils_floodmodel import shift_and_aggregate
 
 
 class TestMethods(unittest.TestCase):

@@ -6,8 +6,8 @@ import pandas as np
 import seaborn as sb
 import xarray as xr
 import os.path as path
-from aux.utils import open_data
-from aux.ml_flood_config import path_to_data
+from misc.utils import open_data
+from misc.ml_flood_config import path_to_data
 import dask
 from dask.distributed import Client
 client = Client(processes=False)  #memory_limit='16GB', 
@@ -18,20 +18,20 @@ client
 data_path = f'{path_to_data}danube/monthly_files/'
 print(data_path)
 
-from aux.utils import rename_files
+from misc.utils import rename_files
 #rename_files(path=data_path, old='day.', new='dayavg.', str_constraint='temperature')
 
-from aux.utils import cdo_daily_means
+from misc.utils import cdo_daily_means
 #cdo_daily_means(path=data_path, file_includes='single_level')
 #cdo_daily_means(path=data_path, file_includes='850_700_500')
 
-from aux.utils import cdo_precip_sums
+from misc.utils import cdo_precip_sums
 #cdo_precip_sums(path=data_path, file_includes='large_scale_precipitation')
 
-from aux.utils import cdo_clean_precip
+from misc.utils import cdo_clean_precip
 #cdo_clean_precip(path=data_path)
 
-from aux.utils import cdo_merge_time
+from misc.utils import cdo_merge_time
 # danube
 #cdo_merge_time(path=data_path, file_includes='large_scale_precipitation', new_file='era5_lsp_1981-2017_daysum.nc')
 #cdo_merge_time(path=data_path, file_includes='convective_precipitation', new_file='era5_tp_cp_1981-2017_daysum.nc')
@@ -60,8 +60,8 @@ for name in os.listdir(data_path):
         file = data_path+name
         #os.system(f'tar -xvf {file}')
 
-from aux.utils import cdo_spatial_cut
-from aux.utils import cdo_merge_time
+from misc.utils import cdo_spatial_cut
+from misc.utils import cdo_merge_time
 # define some vars
 data_path = f'{path_to_data}glofas/'
 print(data_path)

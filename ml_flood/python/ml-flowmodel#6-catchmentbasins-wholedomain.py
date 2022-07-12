@@ -31,7 +31,7 @@ from sklearn.pipeline import Pipeline
 #from sklearn.linear_model import Ridge
 
 import tensorflow.keras
-from tensorflow.keras.layers.core import Dropout
+from tensorflow.keras.layers import Dropout
 
 import sys
 print(sys.executable)

@@ -1,4 +1,4 @@
-import link_src
+#import link_src
 
 
 import xarray as xr
@@ -11,11 +11,11 @@ import dask
 #dask.config.set(scheduler='processes')
 from dask.diagnostics import ProgressBar
 
-from python.aux.ml_flood_config import path_to_data
-from python.aux.utils import open_data
-from python.aux.plot import Map
-from python.aux.utils import calc_stat_moments
-from python.aux.utils import spatial_cov
+from python.misc.ml_flood_config import path_to_data
+from python.misc.utils import open_data
+from python.misc.plot import Map
+from python.misc.utils import calc_stat_moments
+from python.misc.utils import spatial_cov
 
 # load dask client
 client
@@ -56,7 +56,7 @@ plt.legend()
 
 m = Map(figure_kws=dict(figsize=(15,10)))
 
-from python.aux.utils import spatial_cov_2var
+from python.misc.utils import spatial_cov_2var
 
 dis_krems_rise_diff = dis_krems_rise.diff(dim='time')
 cp_rise = era5['cp'].sel(time=slice(start_date_rise, end_date_rise))[1:]

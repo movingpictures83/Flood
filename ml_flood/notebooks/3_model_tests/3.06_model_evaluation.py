@@ -9,10 +9,10 @@ import xarray as xr
 
 import sys
 sys.path.append('../../')
-from python.aux.plot import plot_recurrent
-from python.aux.utils import xr_to_datetime
-from python.aux.utils_floodmodel import add_valid_time
-from python.aux.verification import verify, ME, RMSE, RMSE_persistence, NSE, NSE_diff
+from python.misc.plot import plot_recurrent
+from python.misc.utils import xr_to_datetime
+from python.misc.utils_floodmodel import add_valid_time
+from python.misc.verification import verify, ME, RMSE, RMSE_persistence, NSE, NSE_diff
 
 def multif_metrics(pred, obs, method='total', case=True, name=None):
     """Calculates RMSE and NSE metrics for xr.DataArray in the multiforecast

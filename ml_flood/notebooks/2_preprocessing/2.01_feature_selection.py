@@ -7,7 +7,7 @@ import xarray as xr
 import sys
 sys.path.append('../../')
 
-from python.aux.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand
+from python.misc.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand
 
 poi = dict(latitude=48.35, longitude=13.95)
 # load data

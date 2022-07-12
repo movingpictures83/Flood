@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../../')
 import warnings
 import numpy as np
 import pandas as pd
@@ -5,7 +7,7 @@ import xarray as xr
 import geopandas
 from rasterio import features
 from affine import Affine
-from python.aux.utils import calc_area
+from python.misc.utils import calc_area
 np.seterr(divide='ignore', invalid='ignore')
 
 """Contains methods for the flowmodel (transport model & local model)"""

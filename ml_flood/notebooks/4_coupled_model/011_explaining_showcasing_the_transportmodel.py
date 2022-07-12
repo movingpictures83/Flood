@@ -15,9 +15,9 @@ from dask.diagnostics import ProgressBar
 from joblib import Parallel
 
 sys.path.append('../../')
-from python.aux.utils import open_data
-from python.aux.ml_flood_config import path_to_data
-from python.aux.floodmodels import FlowModel
+from python.misc.utils import open_data
+from python.misc.ml_flood_config import path_to_data
+from python.misc.floodmodels import FlowModel
 
 era5 = open_data(path_to_data+'danube/', kw='era5')
 glofas = open_data(path_to_data+'danube/', kw='glofas_ra')
@@ -30,7 +30,7 @@ tp.name = 'total precip [mm]'
 tp = tp.interp(latitude=glofas.latitude,
                longitude=glofas.longitude)
 
-from python.aux.utils_floodmodel import add_shifted_variables
+from python.misc.utils_floodmodel import add_shifted_variables
 
 shifts = range(1,4)
 X = add_shifted_variables(glofas, shifts, variables='all')
@@ -58,7 +58,7 @@ model = FlowModel('neural_net', dict(epochs=1000,
                                       ))
 pipe = Pipeline([('model', model),])
 
-from python.aux.utils_floodmodel import get_mask_of_basin
+from python.misc.utils_floodmodel import get_mask_of_basin
 
 danube_gridpoints = get_mask_of_basin(glofas['dis'].isel(time=0), 'Danube')
 plt.imshow(danube_gridpoints.astype(int))
@@ -75,7 +75,7 @@ plt.imshow(mask_river_in_catchment.astype(int))
 plt.title('mask_river_in_catchment')
 plt.show()
 
-from python.aux.floodmodels import train_flowmodel
+from python.misc.floodmodels import train_flowmodel
 
 def mkdir(d):
     if not os.path.isdir(d):

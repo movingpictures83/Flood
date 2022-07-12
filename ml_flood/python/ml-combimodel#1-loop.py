@@ -16,8 +16,8 @@ from sklearn.pipeline import Pipeline
 #from sklearn.linear_model import Ridge
 
 import h5py
-import keras
-from keras.layers.core import Dropout
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
 
 import geopandas
 from rasterio import features
