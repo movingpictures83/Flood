@@ -20,10 +20,10 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.linear_model import RidgeCV
 
-import keras
-from keras.layers.core import Dropout
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
 
-from .utils_floodmodel import select_upstream, reshape_scalar_predictand
+from utils_floodmodel import select_upstream, reshape_scalar_predictand
 np.seterr(divide='ignore', invalid='ignore')
 
 

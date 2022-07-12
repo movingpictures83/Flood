@@ -14,7 +14,7 @@ era5['cp']
 
 import sys
 sys.path.append("../../")
-from python.aux.utils_floodmodel import get_mask_of_basin
+from python.misc.utils_floodmodel import get_mask_of_basin
 
 danube_catchment = get_mask_of_basin(glofas['dis'].isel(time=0))
 dis = glofas['dis'].where(danube_catchment)

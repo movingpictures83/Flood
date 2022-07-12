@@ -14,9 +14,11 @@ import xarray as xr
 from dask.diagnostics import ProgressBar
 from joblib import Parallel
 
-import link_src
-from python.aux.utils import open_data
-from python.aux.ml_flood_config import path_to_data
+#import link_src
+import sys
+sys.path.append('../../')
+from python.misc.utils import open_data
+from python.misc.ml_flood_config import path_to_data
 
 era5 = open_data(path_to_data+'danube/', kw='era5')
 glofas = open_data(path_to_data+'danube/', kw='glofas_ra')

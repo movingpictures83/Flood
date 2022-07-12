@@ -1,4 +1,4 @@
-import link_src
+#import link_src
 
 import numpy as np
 import datetime as dt
@@ -16,9 +16,9 @@ from dask.diagnostics import ProgressBar
 
 client
 
-from python.aux.ml_flood_config import path_to_data
-from python.aux.utils import open_data
-from python.aux.utils import shift_time
+from python.misc.ml_flood_config import path_to_data
+from python.misc.utils import open_data
+from python.misc.utils import shift_time
 # define some vars
 data_path = f'{path_to_data}danube/'
 print(data_path)

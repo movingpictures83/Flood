@@ -1,4 +1,4 @@
-from os import pidfd_open
+#from os import pidfd_open
 import numpy as np
 import datetime as dt
 import pandas as pd
@@ -19,8 +19,8 @@ from dask_ml.decomposition import PCA
 #from dask_ml.linear_model import LinearRegression
 from sklearn.linear_model import Ridge
 
-import keras
-from keras.layers.core import Dropout
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
 
 import sys
 print(sys.executable)

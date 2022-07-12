@@ -35,7 +35,7 @@ latmin = 40
 latmax = 50
 incl = 'temperature'
 incl_new = 'temperature_spatial_cut'
-cdo_spatial_cut(path=path_to_data, file_includes=incl, new_file_includes=incl_new, lonmin, lonmax, latmin, latmax)
+cdo_spatial_cut(lonmin, lonmax, latmin, latmax, path=path_to_data, file_includes=incl, new_file_includes=incl_new)
 
 from python.aux.utils import cdo_merge_time
 incl = 'temperature'

@@ -10,10 +10,10 @@ register_matplotlib_converters()
 import pandas as pd
 import seaborn as sns
 import xarray as xr
-import keras
+import tensorflow.keras
 
-from python.aux.utils_floodmodel import add_time, generate_prediction_array, remove_outlier, multi_forecast_case_study
-from python.aux.plot import plot_multif_prediction
+from python.misc.utils_floodmodel import add_time, generate_prediction_array, remove_outlier, multi_forecast_case_study
+from python.misc.plot import plot_multif_prediction
 
 # load data
 ds = xr.open_dataset('../../data/features_xy.nc')
@@ -39,7 +39,7 @@ print('mean:', moment(dist, 1), ', std:', moment(dist, 2), ', skew:', moment(dis
 y = y.diff('time', 1)
 y
 
-from python.aux.utils_floodmodel import reshape_scalar_predictand
+from python.misc.utils_floodmodel import reshape_scalar_predictand
 
 Xda, yda = reshape_scalar_predictand(X, y)
 Xda.features
@@ -56,9 +56,9 @@ X_train.shape, y_train.shape
 
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-import keras
-from keras.layers.core import Dropout
-from keras.constraints import MinMaxNorm, nonneg
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.constraints import MinMaxNorm #, nonneg
 
 def add_time(vector, time, name=None):
     """Converts numpy arrays to xarrays with a time coordinate.
@@ -81,28 +81,28 @@ class DenseNN(object):
     def __init__(self, **kwargs):
         self.xscaler = StandardScaler()
         self.yscaler = StandardScaler()
-        
-        model = keras.models.Sequential()
+
+        model = tensorflow.keras.models.Sequential()
         self.cfg = kwargs
         hidden_nodes = self.cfg.get('hidden_nodes')
         
-        model.add(keras.layers.Dense(hidden_nodes[0], 
+        model.add(tensorflow.keras.layers.Dense(hidden_nodes[0], 
                                      activation='tanh'))
-        model.add(keras.layers.BatchNormalization())
+        model.add(tensorflow.keras.layers.BatchNormalization())
         model.add(Dropout(self.cfg.get('dropout', None)))
         
         for n in hidden_nodes[1:]:
-            model.add(keras.layers.Dense(n, activation='tanh')) 
-            model.add(keras.layers.BatchNormalization())
+            model.add(tensorflow.keras.layers.Dense(n, activation='tanh')) 
+            model.add(tensorflow.keras.layers.BatchNormalization())
             model.add(Dropout(self.cfg.get('dropout', None)))
-        model.add(keras.layers.Dense(self.output_dim, 
+        model.add(tensorflow.keras.layers.Dense(self.output_dim, 
                                      activation='linear'))
-        opt = keras.optimizers.Adam() 
+        opt = tensorflow.keras.optimizers.Adam() 
 
         model.compile(loss=self.cfg.get('loss'), optimizer=opt)
         self.model = model
 
-        self.callbacks = [keras.callbacks.EarlyStopping(monitor='val_loss',
+        self.callbacks = [tensorflow.keras.callbacks.EarlyStopping(monitor='val_loss',
                             min_delta=1e-2, patience=100, verbose=0, mode='auto',
                             baseline=None, restore_best_weights=True),]
     
@@ -140,7 +140,6 @@ class DenseNN(object):
         Input: xr.DataArray
         Output: None
         """
-        
         print(X_train.shape)
         X_train = self.xscaler.fit_transform(X_train.values)
         y_train = self.yscaler.fit_transform(
@@ -169,7 +168,7 @@ hist = m.fit(X_train, y_train, X_valid, y_valid)
 
 m.model.summary()
 
-from keras.utils import plot_model
+from tensorflow.keras.utils import plot_model
 plot_model(m.model, to_file='model.png', show_shapes=True)
 
 h = hist.model.history
@@ -212,7 +211,7 @@ y_pred_test = generate_prediction_array(y_pred_test, y_orig, forecast_range=14)
 title='Setting: Time-Delay Neural Net: 64 hidden nodes, dropout 0.25'
 plot_multif_prediction(y_pred_test, y_orig, forecast_range=14, title=title);
 
-from python.aux.utils_floodmodel import multi_forecast_case_study_tdnn
+from python.misc.utils_floodmodel import multi_forecast_case_study_tdnn
 
 X_multif_fin, X_multifr_fin, y_case_fin = multi_forecast_case_study_tdnn(m)
 

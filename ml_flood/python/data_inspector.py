@@ -1,4 +1,4 @@
-%matplotlib inline
+
 import os
 import sys
 import numpy as np
@@ -7,10 +7,10 @@ import seaborn as sb
 import xarray as xr
 import os.path as path
 import matplotlib.pyplot as plt
-from aux.ml_flood_config import path_to_data
-from aux.utils import calc_stat_moments
-from aux.utils import open_data
-from aux.plot import Map
+from misc.ml_flood_config import path_to_data
+from misc.utils import calc_stat_moments
+from misc.utils import open_data
+from misc.plot import Map
 import seaborn as sns
 
 from dask.distributed import Client

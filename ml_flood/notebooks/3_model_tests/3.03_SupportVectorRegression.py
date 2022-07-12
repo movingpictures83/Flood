@@ -9,8 +9,8 @@ import dask
 dask.config.set(scheduler='threads')
 import xarray as xr
 
-from python.aux.utils_floodmodel import add_time, generate_prediction_array, remove_outlier, multi_forecast_case_study
-from python.aux.plot import plot_multif_prediction
+from python.misc.utils_floodmodel import add_time, generate_prediction_array, remove_outlier, multi_forecast_case_study
+from python.misc.plot import plot_multif_prediction
 
 import joblib
 from sklearn.pipeline import Pipeline

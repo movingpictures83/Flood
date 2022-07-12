@@ -23,16 +23,16 @@ import xarray as xr
 from dask.diagnostics import ProgressBar
 #from joblib import Parallel
 os.environ['KERAS_BACKEND'] = 'theano'
-import keras
+import tensorflow.keras
 
 # To import our custom packages, we are setting the PYTHONPATH in `link_src`.
 
 # In[2]:
 
 
-import link_src
-from python.aux.utils import open_data
-from python.aux.ml_flood_config import path_to_data
+#import link_src
+from misc.utils import open_data
+from misc.ml_flood_config import path_to_data
 
 
 era5 = open_data(path_to_data+'danube/', kw='era5')

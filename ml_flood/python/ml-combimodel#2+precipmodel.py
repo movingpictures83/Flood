@@ -13,9 +13,9 @@ from dask_ml.preprocessing import StandardScaler
 from dask_ml.decomposition import PCA
 from joblib import dump, load
 
-import keras
-from keras.layers.core import Dropout
-from keras.models import load_model
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.models import load_model
 
 import geopandas
 from rasterio import features
@@ -149,7 +149,7 @@ def preprocess_reshape_flowmodel(X_dis, y_dis):
     yda = Xyt[:,-1]
     return Xda, yda, time
 
-from aux.floodmodels import FlowModel
+from misc.floodmodels import FlowModel
 
 static = xr.open_dataset('../data/danube/era5_slt_z_slor_lsm_stationary_field.nc')
 
@@ -375,6 +375,6 @@ plt.gca().set_xlim(y_valid_pred.time.values[0], y_valid_pred.time.values[-1])
 def to_5yr(dis):
     return dis/glofas_rl['rl5'].sel(latitude=dis.latitude, longitude=dis.longitude)
 
-((y_train_pred-y_train)/y_train*100).plot(label=)
+((y_train_pred-y_train)/y_train*100).plot()
 X_train.max('features').plot(label='max_feature')
 

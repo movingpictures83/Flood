@@ -17,8 +17,8 @@ from dask_ml.decomposition import PCA
 #from dask_ml.linear_model import LogisticRegression
 from dask_ml.linear_model import LinearRegression
 
-import keras
-from keras.layers.core import Dropout
+import tensorflow.keras
+from tensorflow.keras.layers import Dropout
 
 import sys
 print(sys.executable)

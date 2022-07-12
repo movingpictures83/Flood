@@ -11,7 +11,7 @@ glofas = xr.open_dataset('../../data/smallsampledata-glofas.nc')
 
 import sys
 sys.path.append("../../")
-from python.aux.utils_floodmodel import get_mask_of_basin, add_shifted_variables
+from python.misc.utils_floodmodel import get_mask_of_basin, add_shifted_variables
 
 dis_mean = glofas['dis'].mean('time')
 danube_catchment = get_mask_of_basin(dis_mean)

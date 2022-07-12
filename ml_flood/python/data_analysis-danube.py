@@ -4,14 +4,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sb
 import xarray as xr
-from aux.utils import calc_stat_moments
+from misc.utils import calc_stat_moments
 
 import dask
 dask.config.set(scheduler='processes')
 
 from dask.diagnostics import ProgressBar
 #import link_src
-#from aux.plot import Map
+#from misc.plot import Map
 
 era5 = xr.open_mfdataset('../data/hourly_for_animations/*precip*.nc')
 
@@ -122,8 +122,8 @@ import xarray as xr
 from matplotlib import animation, rc
 from IPython.display import HTML
 
-from aux.plot import choose_proj_from_xar
-from aux.ml_flood_config import path_to_data
+from misc.plot import choose_proj_from_xar
+from misc.ml_flood_config import path_to_data
 
 major_basins_shapefile = path_to_data+'/drainage_basins/Major_Basins_of_the_World.shp'
 
