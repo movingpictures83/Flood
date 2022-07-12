@@ -1,3 +1,8 @@
+#Upstream floods:  caused by intense rainfall over small areas during short time periods
+#Downstream floods:  caused by storms of long duration that saturate the solid & produce increased runoff
+#Discharge:  the volume of water that passes through a given cross section per unit time, usually
+             #measured in cubic feet per second (cfs) or cubic meters per second (cms)
+
 import os, warnings, sys
 import numpy as np
 import datetime as dt
@@ -15,7 +20,7 @@ from dask.diagnostics import ProgressBar
 from joblib import Parallel
 
 sys.path.append('../../')
-from python.aux.utils import open_data
+from ml_flood.python.misc.utils import open_data 
 from python.aux.ml_flood_config import path_to_data
 from python.aux.floodmodels import FlowModel
 

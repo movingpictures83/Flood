@@ -1,10 +1,10 @@
 #!pip install cdsapi
 
-UID = 'UID'
-API_key = 'API key'
+UID = '139134'
+API_key = '57bdd8fa-fda5-4037-a52c-23871113c263'
 
 import os
-with open(os.path.join(os.path.expanduser('~'), '.cdsapirc2'), 'w') as f:
+with open(os.path.join(os.path.expanduser('~'), '.cdsapirc'), 'w') as f:
     f.write('url: https://cds.climate.copernicus.eu/api/v2\n')
     f.write(f'key: {UID}:{API_key}')
 
