@@ -9,10 +9,10 @@ import xarray as xr
 
 import sys
 sys.path.append('../../')
-from python.aux.plot import plot_recurrent
-from python.aux.utils import xr_to_datetime
-from python.aux.utils_floodmodel import add_valid_time
-from python.aux.verification import verify, ME, RMSE, RMSE_persistence, NSE, NSE_diff
+from ml_flood.python.misc.plot import plot_recurrent
+from ml_flood.python.misc.utils import xr_to_datetime
+from ml_flood.python.misc.utils_floodmodel import add_valid_time
+from ml_flood.python.misc.verification import verify, ME, RMSE, RMSE_persistence, NSE, NSE_diff
 
 def multif_metrics(pred, obs, method='total', case=True, name=None):
     """Calculates RMSE and NSE metrics for xr.DataArray in the multiforecast
@@ -54,11 +54,11 @@ def multif_metrics(pred, obs, method='total', case=True, name=None):
         metr.name = f"{name}-{metr.name}"
     return metr
 
-truth_test = xr.open_dataset('../../data/glofas_reanalysis_test_period.nc')['dis']
-fc_lr_test = xr.open_dataset('../../data/models/LinearRegression/linear_regression_result_test_period.nc')['prediction']
-fc_svr_test = xr.open_dataset('../../data/models/SVR/support_vector_regression_result_test_period.nc')['prediction']
-fc_gb_test = xr.open_dataset('../../data/models/GradientBoost/gradient_boost_result_test_period.nc')['prediction']
-fc_tdnn_test = xr.open_dataset('../../data/models/TimeDelayNeuralNet/tdnn_result_test_period.nc')['prediction']
+truth_test = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/glofas_reanalysis_test_period.nc')['dis']
+fc_lr_test = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/models/LinearRegression/linear_regression_result_test_period.nc')['prediction']
+fc_svr_test = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/models/SVR/support_vector_regression_result_test_period.nc')['prediction']
+fc_gb_test = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/models/GradientBoost/gradient_boost_result_test_period.nc')['prediction']
+fc_tdnn_test = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/models/TimeDelayNeuralNet/tdnn_result_test_period.nc')['prediction']
 
 # initial state used for persistence
 truth_init = truth_test.values.reshape(fc_lr_test.shape)[:,0]

@@ -14,9 +14,9 @@ import xarray as xr
 from dask.diagnostics import ProgressBar
 from joblib import Parallel
 
-import link_src
-from python.aux.utils import open_data
-from python.aux.ml_flood_config import path_to_data
+#import link_src
+from ml_flood.python.misc.utils import open_data
+from ml_flood.python.misc.ml_flood_config import path_to_data
 
 era5 = open_data(path_to_data+'danube/', kw='era5')
 
@@ -42,7 +42,7 @@ shifts = range(1,4)
 
 X_local
 
-from python.aux.utils_flowmodel import add_shifted_predictors
+from ml_flood.python.misc.utils_flowmodel import add_shifted_predictors
 
 shifts = range(1,4)
 X_flow = add_shifted_predictors(glofas, shifts, variables='all')
@@ -60,7 +60,7 @@ ff_valid = main_dir+'/models/localmodel/danube/kind/point_lat_lon_validation.png
 
 ff_mod_transport = main_dir+'/models/flowmodel/danube/kind/point_lat_lon_flowmodel.pkl'
 
-from python.aux.floodmodels import LocalModel
+from ml_flood.python.misc.floodmodels import LocalModel
 
 #pipe = Pipeline([('scaler', StandardScaler()),
 #                 #('pca', PCA(n_components=6)),
@@ -70,7 +70,7 @@ model = LocalModel('neural_net', dict(epochs=1000,))
 pipe = Pipeline([#('pca', PCA(n_components=6)),
                   ('model', model),])
 
-from python.aux.utils_flowmodel import get_mask_of_basin
+from ml_flood.python.misc.utils_flowmodel import get_mask_of_basin
 
 mask_catchment = get_mask_of_basin(glofas['dis'].isel(time=0), 'Danube')
 plt.imshow(mask_catchment.astype(int))
@@ -93,7 +93,7 @@ np.seterr(divide='ignore', invalid='ignore')
 from joblib import Parallel, delayed  #  parallel computation
 from joblib import dump, load   # saving and loading pipeline objects ("models")
 from sklearn.base import clone
-from python.aux.utils_flowmodel import select_upstream, preprocess_reshape_flowmodel
+from ml_flood.python.misc.utils_flowmodel import select_upstream, preprocess_reshape_flowmodel
 @delayed
 def train_localmodel(X_local, X_flow, pipe,
                     lat, lon,

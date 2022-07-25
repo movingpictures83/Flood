@@ -6,17 +6,42 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import xarray as xr
 
-era5 = xr.open_dataset('../../data/smallsampledata-era5.nc')
+import sys
+sys.path.append("../../")
 
-glofas = xr.open_dataset('../../data/smallsampledata-glofas.nc')
+#era5 = xr.open_dataset('ml_flood/data/sampledata-1981-2000-era5.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/sampledata-1981-2000-era5.nc')
+
+#era5 = xr.open_dataset('ml_flood/data/sampledata-2001-2017-era5.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/sampledata-2001-2017-era5.nc')
+
+#era5 = xr.open_dataset('ml_flood/data/sampledata-1981-2000-glofas.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/sampledata-1981-2000-glofas.nc')
+
+#era5 = xr.open_dataset('ml_flood/data/sampledata-2001-2017-glofas.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/sampledata-2001-2017-glofas.nc')
+
+#era5 = xr.open_dataset('ml_flood/data/features_xy.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/features_xy.nc')
+
+#era5 = xr.open_dataset('ml_flood/data/glofas_freruns_case_study.nc')
+
+#glofas = xr.open_dataset('ml_flood/data/glofas_freruns_case_study.nc')
+
+era5 = xr.open_dataset('smallsampledata-era5.nc')
+
+glofas = xr.open_dataset('./ml_flood/data/sampledata-2001-2017-glofas.nc')
 
 era5
 
 era5['cp']
 
-import sys
-sys.path.append("../../")
-from python.aux.utils_floodmodel import get_mask_of_basin
+from ml_flood.python.misc.utils_floodmodel import get_mask_of_basin
 
 danube_catchment = get_mask_of_basin(glofas['dis'].isel(time=0))
 dis = glofas['dis'].where(danube_catchment)
@@ -33,7 +58,7 @@ plt.gca().plot(lon, lat, color='cyan', marker='o',
 
 X = era5[['lsp', 'cp']]
 
-from python.aux.utils_floodmodel import shift_and_aggregate
+from ml_flood.python.misc.utils_floodmodel import shift_and_aggregate
 
 for var in ['lsp', 'cp']:
     for i in range(1,6):

@@ -8,17 +8,18 @@ import seaborn as sns
 
 import dask
 from dask.distributed import Client, LocalCluster
-cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1,
-client = Client(cluster)  # memory_limit='16GB',
+
+def main():
+	cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1,
+	client = Client(cluster)  # memory_limit='16GB',
+	client
 
 import xarray as xr
 from dask.diagnostics import ProgressBar
 
-client
-
-from python.aux.ml_flood_config import path_to_data
-from python.aux.utils import open_data
-from python.aux.utils import shift_time
+from ml_flood.python.misc.ml_flood_config import path_to_data
+from ml_flood.python.misc.utils import open_data
+from ml_flood.python.misc.utils import shift_time
 # define some vars
 data_path = f'{path_to_data}danube/'
 print(data_path)
@@ -34,7 +35,9 @@ if not 'lsp' in era5:
 else:
     lsp = era5['lsp']
 
-reltop = era5['z'].sel(level=500) - era5['z'].sel(level=850)
+print(list(era5.keys()))
+print(list(era5.coords))
+reltop = era5['z_topo'].sel(level=500) - era5['z_topo'].sel(level=850)
 reltop.name = 'reltop'
 
 q_mean = era5['q'].mean('level')
@@ -167,3 +170,5 @@ while t < tend:
 plt.legend(['reanalysis', 'forecasts'])
 ax.set_ylabel('river discharge [m$^3$/s]')
 
+if __name__ == "__main__":
+	main()

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import xarray as xr
 import sys
 sys.path.append('../../')
-from python.aux.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand, shift_and_aggregate
+from ml_flood.python.misc.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand, shift_and_aggregate
 
 # load data
 era5 = xr.open_mfdataset('../../data/sampledata-*-era5.nc', combine='by_coords')

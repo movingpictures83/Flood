@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import xarray as xr
 
-era5 = xr.open_dataset('../../data/smallsampledata-era5.nc')
-glofas = xr.open_dataset('../../data/smallsampledata-glofas.nc')
+era5 = xr.open_dataset('./smallsampledata-era5.nc')
+glofas = xr.open_dataset('./ml_flood/data/sampledata-2001-2017-glofas.nc')
 
 import sys
 sys.path.append("../../")
-from python.aux.utils_floodmodel import get_mask_of_basin, add_shifted_variables
+from ml_flood.python.misc.utils_floodmodel import get_mask_of_basin, add_shifted_variables
 
 dis_mean = glofas['dis'].mean('time')
 danube_catchment = get_mask_of_basin(dis_mean)
@@ -37,7 +37,7 @@ cluster = xr.Dataset(cluster, coords=dict(clusterId=('clusterId', range(len(bins
                                           longitude=('longitude', dis_mean.longitude)))
 cluster = cluster.to_array('clusterId')
 
-from python.aux.utils_floodmodel import shift_and_aggregate, aggregate_clustersum
+from ml_flood.python.misc.utils_floodmodel import shift_and_aggregate, aggregate_clustersum
 
 shifts = [1, 2, 3]
 shift_vars = ['lsp', 'cp']

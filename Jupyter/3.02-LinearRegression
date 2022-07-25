@@ -20,23 +20,23 @@ import matplotlib
 matplotlib.rcParams.update({'font.size': 14})
 
 # load data
-features = xr.open_dataset('../../data/features_xy.nc')
+features = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/features_xy.nc')
 y = features['dis']
 X = features.drop(['dis', 'dis_diff'])
 
-import seaborn as sns
+# import seaborn as sns
 
-sns.distplot(y_test)
-plt.ylabel('density')
-plt.xlim([-100, 2250])
-plt.title('distribution of discharge')
-plt.savefig('distribution_dis.png', dpi=600, bbox_inches='tight')
+# sns.distplot(y_test)
+# plt.ylabel('density')
+# plt.xlim([-100, 2250])
+# plt.title('distribution of discharge')
+# plt.savefig('distribution_dis.png', dpi=600, bbox_inches='tight')
 
-sns.distplot(y_test.diff('time'))
-plt.ylabel('density')
-plt.xlim([-250, 250])
-plt.title('distribution of change in discharge')
-plt.savefig('distribution_dis_change.png', dpi=600, bbox_inches='tight')
+# sns.distplot(y_test.diff('time'))
+# plt.ylabel('density')
+# plt.xlim([-250, 250])
+# plt.title('distribution of change in discharge')
+# plt.savefig('distribution_dis_change.png', dpi=600, bbox_inches='tight')
 
 features
 
@@ -266,12 +266,12 @@ def multi_forecast_case_study(pipe_case, x, y):
         y_pred = add_time(y_pred, X_pred.time, name='forecast')
 
         multif_case = generate_prediction_array(y_pred, y_2013, forecast_range=30)
-        multif_case.num_of_forecast.values = [forecast]
+        multif_case.num_of_forecast['forecast'] = forecast
         multif_list.append(multif_case)
 
         # add glofas forecast rerun data
         # glofas forecast rerun data
-        frerun = xr.open_mfdataset(f'../../data/glofas-freruns/{fr_dir}/glof*', combine='by_coords')
+        frerun = xr.open_mfdataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/glofas_freruns_case_study.nc ', combine='by_coords')
         poi = dict(lat=48.35, lon=13.95)
         fr = frerun['dis'].sel(lon=slice(13.9, 14.), lat=slice(48.4, 48.3)).compute()
         fr = fr.where(~np.isnan(fr), 0).drop(labels=['lat', 'lon']).squeeze()

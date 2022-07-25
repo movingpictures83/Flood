@@ -1,6 +1,6 @@
 import sys
-sys.path.append('../../')
-from python.aux.data_download import CDS_Dataset
+#sys.path.append('../../')
+from ml_flood.python.misc.data_download import CDS_Dataset
 
 ds = CDS_Dataset(dataset_name='reanalysis-era5-pressure-levels',
                  save_to_folder='./example_download/'  # path to where datasets shall be stored

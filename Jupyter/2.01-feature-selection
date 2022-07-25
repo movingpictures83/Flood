@@ -7,12 +7,12 @@ import xarray as xr
 import sys
 sys.path.append('../../')
 
-#from python.aux.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand
+from ml_flood.python.misc.utils_floodmodel import get_mask_of_basin, add_shifted_variables, reshape_scalar_predictand
 
 poi = dict(latitude=48.35, longitude=13.95)
 # load data
-era5 = xr.open_dataset('../../data/smallsampledata-era5.nc')
-glofas = xr.open_dataset('../../data/smallsampledata-glofas.nc')
+era5 = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/sampledata-1981-2000-era5.nc')
+glofas = xr.open_dataset('/lclhome/mwei005/Flood/Jupyter/ml_flood/data/sampledata-1981-2000-glofas.nc')
 era5
 
 sd_diff = era5['sd'].diff(dim='time')
@@ -24,12 +24,11 @@ dis_mean = glofas['dis'].mean('time')
 dis_mean.plot()
 plt.title('mean discharge in the dataset domain')
 
-dummy = glofas['dis'].isel(time=0).drop('time')
-danube_catchment = get_mask_of_basin(dummy, kw_basins='Danube')
-dis_mean.where(danube_catchment).plot()
-plt.title('mean discharge in the danube catchment')
-plt.gca().plot(poi['longitude'], poi['latitude'], color='cyan', marker='o',
-               markersize=20, mew=4, markerfacecolor='none')
+# dummy = glofas['dis'].isel(time=0).drop('time')
+# danube_catchment = get_mask_of_basin(dummy, kw_basins='Danube')
+# dis_mean.where(danube_catchment).plot()
+# plt.title('mean discharge in the danube catchment')
+# plt.gca().plot(poi['longitude'], poi['latitude'], color='cyan', marker='o', markersize=20, mew=4, markerfacecolor='none')
 
 def feature_preproc(era5, glofas, timeinit, timeend):
 
