@@ -16,8 +16,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
-from keras.layers import SimpleRNN
-from keras.layers.core import Dense, Dropout
+from tensorflow.keras.layers import SimpleRNN
+from tensorflow.keras.layers import Dense, Dropout
 import matplotlib.pyplot as plt
 import pandas as pd
 from tensorflow.keras.optimizers import Adam
