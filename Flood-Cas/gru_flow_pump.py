@@ -9,6 +9,7 @@
 """
 
 import pandas as pd
+from tensorflow import keras
 from tensorflow.keras.optimizers import Adam
 from pandas import concat
 import numpy as np
@@ -21,11 +22,12 @@ from matplotlib import pyplot
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
-from keras.models import Sequential
-from keras.layers import LSTM
-from keras.layers.recurrent import GRU
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras import layers
+from tensorflow.keras.layers import GRU
 import matplotlib.pyplot as plt
-from keras.layers.core import Dense, Dropout
+from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 from pandas import read_csv
 from sklearn.metrics import mean_absolute_error
