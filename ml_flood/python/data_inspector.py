@@ -14,13 +14,16 @@ from misc.plot import Map
 import seaborn as sns
 
 from dask.distributed import Client
-client = Client(processes=True)
+
+def main():
+    client = Client(processes=True)
+    # load dask client
+    client
+
 import dask
 #dask.config.set(scheduler='processes')
 from dask.diagnostics import ProgressBar
 
-# load dask client
-client
 # define some vars
 data_path = f'{path_to_data}danube/'
 print(data_path)
@@ -161,3 +164,6 @@ xdf.plot(y=['lsp', 'cp'], ax=ax, figsize=(15,5))
 xdf.cumsum().plot(y=['lsp', 'cp'], figsize=(15,5))
 
 sns.jointplot(x='cp', y='dis', data=merge, kind='hex')
+
+if __name__ == '__main__':
+    main()

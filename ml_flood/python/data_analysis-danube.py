@@ -11,7 +11,7 @@ dask.config.set(scheduler='processes')
 
 from dask.diagnostics import ProgressBar
 #import link_src
-#from misc.plot import Map
+from misc.plot import Map
 
 era5 = xr.open_mfdataset('../data/hourly_for_animations/*precip*.nc')
 

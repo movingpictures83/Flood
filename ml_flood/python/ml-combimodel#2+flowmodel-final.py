@@ -147,7 +147,8 @@ def preprocess_reshape_flowmodel(X_dis, y_dis):
     yda = Xyt[:,-1]
     return Xda, yda, time
 
-from misc.floodmodels import FlowModel
+import link_src
+from python.misc.floodmodels import FlowModel
 
 static = xr.open_dataset('../data/danube/era5_slt_z_slor_lsm_stationary_field.nc')
 

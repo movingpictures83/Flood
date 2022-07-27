@@ -37,7 +37,7 @@ cluster = xr.Dataset(cluster, coords=dict(clusterId=('clusterId', range(len(bins
                                           longitude=('longitude', dis_mean.longitude)))
 cluster = cluster.to_array('clusterId')
 
-from python.aux.utils_floodmodel import shift_and_aggregate, aggregate_clustersum
+from python.misc.utils_floodmodel import shift_and_aggregate, aggregate_clustersum
 
 shifts = [1, 2, 3]
 shift_vars = ['lsp', 'cp']

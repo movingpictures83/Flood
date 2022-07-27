@@ -1,5 +1,5 @@
-from ml_flood_config import path_to_data
-from aux.data_download import CDS_Dataset
+from misc.ml_flood_config import path_to_data
+from misc.data_download import CDS_Dataset
 
 # define areas of interest
 area_dict = {'danube': '50/7/47/20',

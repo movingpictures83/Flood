@@ -1,4 +1,4 @@
-#import link_src
+import link_src
 
 
 import xarray as xr
@@ -6,7 +6,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from dask.distributed import Client
-client = Client(processes=True)
+
+def main():
+    client = Client(processes=True)
+    # load dask client
+    client
+
 import dask
 #dask.config.set(scheduler='processes')
 from dask.diagnostics import ProgressBar
@@ -17,8 +22,6 @@ from python.misc.plot import Map
 from python.misc.utils import calc_stat_moments
 from python.misc.utils import spatial_cov
 
-# load dask client
-client
 # define some vars
 data_path = f'{path_to_data}danube/'
 print(data_path)
@@ -131,3 +134,6 @@ yda.plot(ax=ax2, ls='--', color='k', label='glofas-discharge')
 yda_change.plot(ax=ax2, ls='--', color='grey', label='glofas-discharge change')
 plt.title('mean/std')
 fig.legend()
+
+if __name__ == '__main__':
+    main()

@@ -6,13 +6,14 @@ import seaborn as sns
 
 import dask
 from dask.distributed import Client, LocalCluster
-cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1, 
-client = Client(cluster)  # memory_limit='16GB', 
+
+def main():
+    cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1, 
+    client = Client(cluster)  # memory_limit='16GB', 
+    client
 
 import xarray as xr
 from dask.diagnostics import ProgressBar
-
-client
 
 import sys
 print(sys.executable)
@@ -227,3 +228,6 @@ for t in range(12):
     y = pipe.predict(Xda[t:t+30])
     ydf = pd.Series(index=time.to_pandas().iloc[t:t+30], data=y)
     ydf.plot(ax=ax)
+
+if __name__ == '__main__':
+    main()

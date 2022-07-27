@@ -24,20 +24,6 @@ features = xr.open_dataset('../../data/features_xy.nc')
 y = features['dis']
 X = features.drop(['dis', 'dis_diff'])
 
-import seaborn as sns
-
-sns.distplot(y_test)
-plt.ylabel('density')
-plt.xlim([-100, 2250])
-plt.title('distribution of discharge')
-plt.savefig('distribution_dis.png', dpi=600, bbox_inches='tight')
-
-sns.distplot(y_test.diff('time'))
-plt.ylabel('density')
-plt.xlim([-250, 250])
-plt.title('distribution of change in discharge')
-plt.savefig('distribution_dis_change.png', dpi=600, bbox_inches='tight')
-
 features
 
 dis_shift_switch = False
@@ -59,6 +45,20 @@ X_valid, y_valid = X_base.loc[period_valid], y_base.loc[period_valid]
 X_test, y_test = X_base.loc[period_test], y_base.loc[period_test]
 
 X_train.shape, y_train.shape
+
+import seaborn as sns
+
+sns.distplot(y_test)
+plt.ylabel('density')
+plt.xlim([-100, 2250])
+plt.title('distribution of discharge')
+plt.savefig('distribution_dis.png', dpi=600, bbox_inches='tight')
+
+sns.distplot(y_test.diff('time'))
+plt.ylabel('density')
+plt.xlim([-250, 250])
+plt.title('distribution of change in discharge')
+plt.savefig('distribution_dis_change.png', dpi=600, bbox_inches='tight')
 
 def remove_outlier(x):
     """Removes outliers under, over 1th, 99th percentile of the input pandas series.
@@ -265,7 +265,7 @@ def multi_forecast_case_study(pipe_case, x, y):
         y_pred = add_time(y_pred, X_pred.time, name='forecast')
         
         multif_case = generate_prediction_array(y_pred, y_2013, forecast_range=30)
-        multif_case.num_of_forecast.values = [forecast]
+        multif_case.assign_coords(num_of_forecast = [forecast])
         multif_list.append(multif_case)
         
         # add glofas forecast rerun data

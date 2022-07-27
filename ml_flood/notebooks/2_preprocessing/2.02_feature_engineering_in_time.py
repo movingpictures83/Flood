@@ -31,7 +31,7 @@ plt.gca().plot(lon, lat, color='cyan', marker='o',
 
 X = era5[['lsp', 'cp']]
 
-from python.aux.utils_floodmodel import shift_and_aggregate
+from python.misc.utils_floodmodel import shift_and_aggregate
 
 for var in ['lsp', 'cp']:
     for i in range(1,6):
@@ -60,7 +60,7 @@ plt.title('Example timeseries of predictors')
 
 X
 
-from python.aux.utils_floodmodel import reshape_multiday_predictand
+from python.misc.utils_floodmodel import reshape_multiday_predictand
 
 y = glofas['dis'].interp(latitude=lat, longitude=lon)
 

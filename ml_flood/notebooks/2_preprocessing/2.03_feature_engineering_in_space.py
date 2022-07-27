@@ -33,7 +33,7 @@ plt.gca().plot(lon, lat, color='cyan', marker='o',
 
 X = era5[['lsp', 'cp']]
 
-from python.aux.utils_floodmodel import shift_and_aggregate
+from python.misc.utils_floodmodel import shift_and_aggregate
 
 for var in ['lsp', 'cp']:
     for i in range(1,6):
@@ -62,7 +62,7 @@ plt.title('Example timeseries of predictors')
 
 X
 
-from python.aux.utils_floodmodel import reshape_multiday_predictand
+from python.misc.utils_floodmodel import reshape_multiday_predictand
 
 y = glofas['dis'].interp(latitude=lat, longitude=lon)
 
@@ -90,8 +90,8 @@ plt.grid()
 plt.ylabel('cumulative distribution')
 plt.xlabel('discharge [m$^3$/s]')
 
-from python.aux.utils_floodmodel import cluster_by_discharge
-from python.aux.utils import calc_area, nandot
+from python.misc.utils_floodmodel import cluster_by_discharge
+from python.misc.utils import calc_area, nandot
 
 bin_edges = [0, 0.8, 2.5, 10.25, 10000]
 cluster = cluster_by_discharge(dis_mean, bin_edges)
@@ -157,7 +157,7 @@ def aggregate_clustersum(ds, cluster, clusterdim):
     return out.drop(clusterdim)
 
 # later, we can import the function from here
-# from python.aux.utils_flowmodel import aggregate_clustersum
+# from python.misc.utils_flowmodel import aggregate_clustersum
 
 Xagg = aggregate_clustersum(X, cluster, 'clusterId')
 

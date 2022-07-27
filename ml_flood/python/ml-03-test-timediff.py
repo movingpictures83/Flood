@@ -6,13 +6,14 @@ import seaborn as sns
 
 import dask
 from dask.distributed import Client, LocalCluster
-cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1, 
-client = Client(cluster)  # memory_limit='16GB', 
+
+def main():
+    cluster = LocalCluster(processes=True) #n_workers=10, threads_per_worker=1, 
+    client = Client(cluster)  # memory_limit='16GB', 
+    client
 
 import xarray as xr
 from dask.diagnostics import ProgressBar
-
-client
 
 import sys
 print(sys.executable)
@@ -183,3 +184,6 @@ while t < tend:
     
 
 ax.set_ylabel('river discharge [m$^3$/s]')
+
+if __name__ == '__main__':
+    main()

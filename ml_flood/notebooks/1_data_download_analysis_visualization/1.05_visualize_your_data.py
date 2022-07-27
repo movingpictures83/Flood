@@ -9,12 +9,10 @@ import dask
 dask.config.set(scheduler='processes')
 
 from dask.diagnostics import ProgressBar
-#import link_src
-import sys
-sys.path.append('../../')
+import link_src
 from python.misc.plot import Map
 
-xar = xr.open_mfdataset('../data/usa/monthly_files/*precip*.nc')
+xar = xr.open_mfdataset('../../data/usa/monthly_files/*precip*.nc')
 
 xar.data_vars
 
