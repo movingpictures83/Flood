@@ -15,10 +15,10 @@ from math import sqrt
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
-from keras.models import Sequential
-from keras.layers import LSTM
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM
 import matplotlib.pyplot as plt
-from keras.layers.core import Dense, Dropout
+from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 from pandas import read_csv
 from sklearn.metrics import mean_absolute_error
@@ -60,6 +60,9 @@ print("non_stages_supervised.shape:", non_stages_supervised.shape)
 non_stages.reset_index(drop=True, inplace=True)
 non_stages_supervised.reset_index(drop=True, inplace=True)
 stages_supervised.reset_index(drop=True, inplace=True)
+print("length of stages_supervised is: ", len(stages_supervised))
+print("length of non_stages is: ", len(non_stages))
+print("length of non_stages_supervised: ", len(non_stages_supervised))
 all_data = concat([non_stages.iloc[0:len(stages_supervised), -1],  # add rainfall to measure heavy/medium/light
                    non_stages_supervised.iloc[0:len(stages_supervised), 0:-non_stages.shape[1]],
                    stages_supervised.iloc[:, :-3]],
@@ -92,6 +95,8 @@ test_X = scaler.fit_transform(test_X)
 test_y = scaler.fit_transform(test_y)
 
 # reshape input to be 3D [samples, timesteps, features]
+print(train_X.shape[0])
+print(test_X.shape[0])
 train_X = train_X.reshape((train_X.shape[0], n_hours, n_features))
 test_X = test_X.reshape((test_X.shape[0], n_hours, n_features))
 print("train_X.shape, train_y.shape, test_X.shape, test_y.shape: \n", train_X.shape, train_y.shape, test_X.shape,

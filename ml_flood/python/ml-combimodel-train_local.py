@@ -23,7 +23,7 @@ import xarray as xr
 from dask.diagnostics import ProgressBar
 #from joblib import Parallel
 os.environ['KERAS_BACKEND'] = 'theano'
-import keras
+import tensorflow.keras
 
 # To import our custom packages, we are setting the PYTHONPATH in `link_src`.
 
@@ -31,8 +31,8 @@ import keras
 
 
 import link_src
-from python.aux.utils import open_data
-from python.aux.ml_flood_config import path_to_data
+from python.misc.utils import open_data
+from python.misc.ml_flood_config import path_to_data
 
 
 era5 = open_data(path_to_data+'danube/', kw='era5')
@@ -98,7 +98,7 @@ X_local
 # In[8]:
 
 
-from python.aux.utils_flowmodel import add_shifted_predictors
+from python.misc.utils_flowmodel import add_shifted_predictors
 
 
 # In[9]:
@@ -141,7 +141,7 @@ ff_mod_transport = main_dir+'/models/flowmodel/danube/kind/point_lat_lon_flowmod
 # In[34]:
 
 
-from python.aux.floodmodels import LocalModel, FlowModel
+from python.misc.floodmodels import LocalModel, FlowModel
 
 
 # In[45]:
@@ -157,7 +157,7 @@ from python.aux.floodmodels import LocalModel, FlowModel
 # In[46]:
 
 
-from python.aux.utils_flowmodel import get_mask_of_basin
+from python.misc.utils_flowmodel import get_mask_of_basin
 
 
 # In[47]:

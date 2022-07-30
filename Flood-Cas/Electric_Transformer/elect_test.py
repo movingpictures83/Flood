@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import json
 
-data_path = 'data_raw/elect/LD2011_2014.txt'
+data_path = 'data_raw/elect/LD2011_2014.csv'
 data = pd.read_csv(data_path, index_col=0, parse_dates=True)
 
 
