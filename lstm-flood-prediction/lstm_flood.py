@@ -29,7 +29,6 @@ plt.style.use('ggplot')
 
 # In[2]:
 
-
 # fix random seed for reproducibility
 np.random.seed(10)
 
