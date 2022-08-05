@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../../')
 import warnings
 import numpy as np
 import pandas as pd
@@ -5,7 +7,7 @@ import xarray as xr
 import geopandas
 from rasterio import features
 from affine import Affine
-from python.aux.utils import calc_area
+from python.misc.utils import calc_area
 np.seterr(divide='ignore', invalid='ignore')
 
 """Contains methods for the flowmodel (transport model & local model)"""
@@ -42,7 +44,7 @@ def get_mask_of_basin(da, kw_basins='Danube'):
 
     # this shapefile is from natural earth data
     # http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
-    shp2 = '/raid/home/srvx7/lehre/users/a1303583/ipython/ml_flood/data/' \
+    shp2 = '../../data/' \
            + 'drainage_basins/Major_Basins_of_the_World.shp'
     basins = geopandas.read_file(shp2)
     single_basin = basins.query("NAME == '"+kw_basins+"'").reset_index(drop=True)
@@ -501,7 +503,7 @@ def multi_forecast_case_study(pipe_case, x, y):
         y_pred = add_time(y_pred, X_pred.time, name='forecast')
 
         multif_case = generate_prediction_array(y_pred, y_2013, forecast_range=30)
-        multif_case.num_of_forecast.values = [forecast]
+        multif_case.assign_coords(num_of_forecast = [forecast])
         multif_list.append(multif_case)
 
         # add glofas forecast rerun data

@@ -108,7 +108,3 @@ def main():
     evaluate_trainScore_testScore(model, trainX, trainY, testX, testY,scaler)
     make_prediction(model, trainX, testX)
     read_createTest_clean_createDataset_reshape_predict_unseen('dataset/flood_test.csv', trainX, trainY, testX, testY)
-
-
-if __name__ == "__main__":
-    main()
