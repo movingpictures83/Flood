@@ -18,7 +18,7 @@ Downloading the dataset :
 
 Preprocessing the data : 
 
-    python data_prep.py --data-path data_raw/elect/LD2011_2014.txt --save-name elect --window-size 100 --stride-size 500 --test-ratio 0.3
+    python data_prep.py --data-path data_raw/LD2011_2014.csv --save-name elect --window-size 100 --stride-size 500 --test-ratio 0.3
 
 Launching the training :
 

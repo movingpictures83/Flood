@@ -61,14 +61,14 @@ def main_train(data_dir,dataset,meta_information_path,model_config_path,train_co
 	test_loader = DataLoader(test_set, batch_size=predict_batch_size, sampler=RandomSampler(test_set), num_workers=0)
 
 	# timeseries_list :
-	train_timeseries_list = np.load(os.path.join(data_dir, f'train_timeseries_dict_{dataset}.npy'))
-	test_timeseries_list = np.load(os.path.join(data_dir, f'test_timeseries_dict_{dataset}.npy'))
+	train_timeseries_list = np.load(os.path.join(data_dir, f'train_timeseries_dict_{dataset}.npy'), allow_pickle=True)
+	test_timeseries_list = np.load(os.path.join(data_dir, f'test_timeseries_dict_{dataset}.npy'), allow_pickle=True)
 	
 	# Device :
 	device = 'cpu'
-	if torch.cuda.is_available():
-		torch.set_default_tensor_type(torch.cuda.FloatTensor)
-		device = 'cuda'
+	#if torch.cuda.is_available():
+	#	torch.set_default_tensor_type(torch.cuda.FloatTensor)
+	#	device = 'cuda'
 	
 	# Model Definition :
 	windows_size = meta_information['window_size'] #args.window_size  # window learning size 

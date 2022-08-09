@@ -1,6 +1,6 @@
 PAIRS
 Patrizio-Kevin (Flood-Cas)
-Alana-Alfredo (Flood-Prediction)
+Alana-Alfredo (Flood-Prediction) -> became 'HoltWinters'
 Gavin-Leonardo (lstm-flood-prediction)
 John-Eduardo (ml_flood)
 Michael-Adrian (Jupyter)

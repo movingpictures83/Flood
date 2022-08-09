@@ -32,7 +32,7 @@ def main():
 
     # Predict stage
     inv_y, inv_yhat = predict(test_X, test_y, model, scaler)
-
+    print(inv_y)
     print("Variables inv_y and inv_yhat contain the results of the prediction. \n")
     print("Program ended successfuly. \n")
 if __name__ == "__main__":
