@@ -3,12 +3,11 @@
 
 # In[2]:
 
-
-# from tensorflow import keras
-# from tensorflow.keras import layers
+from tensorflow import keras
+from tensorflow.keras import layers
 # from math import sqrt
 # from numpy import concatenate
-# from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 # from sklearn.preprocessing import LabelEncoder
 # from sklearn.metrics import mean_squared_error
 # from sklearn.metrics import mean_absolute_error
@@ -17,9 +16,9 @@
 # import matplotlib.pyplot as plt
 # import pandas as pd
 # from tensorflow.keras.optimizers import Adam
-# from pandas import concat
+from pandas import concat
 # import numpy as np
-# from helper import series_to_supervised, stage_series_to_supervised
+from helper import series_to_supervised, stage_series_to_supervised
 # from pandas import read_csv
 
 
@@ -37,51 +36,9 @@ import numpy as np
 # In[30]:
 
 
-data1 = pd.read_csv('data/zeda/Merged_with_MeanGridRain.csv', index_col=0)
-data1
-
-
-# In[49]:
-
-
-data1.to_csv('./data/zeda/Merged_all')
-
-
-# In[31]:
-
-
-data1.describe()
-
-
-# In[33]:
-
-
-data1['mean'].value_counts()
-
-
-# In[51]:
-
-
-data1[data1['mean'] == 0]
-
-
-# In[50]:
-
-
-data1[data1['mean'] > 0]
-
-
-# In[ ]:
-
-
-
-
-
-# In[37]:
-
 
 # dataset = read_csv('data/zeda/Merged_with_MeanGridRain.csv', index_col=0)
-dataset = pd.read_csv('data/zeda/Merged.csv', index_col=0)
+dataset = pd.read_csv('../Merged.csv', index_col=0)
 dataset = dataset[:578448]
 dataset
 
@@ -105,7 +62,7 @@ plt.ylabel('Rainfall', fontsize='14')
 plt.xticks(np.arange(0, 578593, 52599), dates, rotation=30, fontsize=12)
 plt.yticks(fontsize=12)
 plt.title('Mean of Rainfall (2010-2020)')
-plt.savefig('./data/rain_mean.png', dpi=300)
+plt.savefig('../Figures/rain_mean.png', dpi=300)
 plt.show()
 
 
@@ -138,15 +95,15 @@ print("0.0001 - 0.0006: ", len(count_0006_0013))
 print("0.0006 - 0.0013: ", len(count_0006_0013))
 print("0.0013 - 0.020: ", len(count_0013_0200))
 
-print("0.02 - 0.04: ", len(count_0002_0004))
-print("0.04 - 0.06: ", len(count_0004_0006))
-print("0.06 - 0.08: ", len(count_0006_0008))
-print("0.08 - 0.10: ", len(count_0008_0010))
+print("0.02 - 0.04: ", len(count_0200_0400))
+print("0.04 - 0.06: ", len(count_0400_0600))
+print("0.06 - 0.08: ", len(count_0600_0800))
+print("0.08 - 0.10: ", len(count_0800_0100))
 
-print("0.10 - 0.20: ", len(count_0010_0020))
-print("0.20 - 0.30: ", len(count_0020_0030))
-print("0.20 - 0.30: ", len(count_0030_0040))
-print(">= 0.4: ", len(count_0040_0050))
+print("0.10 - 0.20: ", len(count_1000_2000))
+print("0.20 - 0.30: ", len(count_2000_3000))
+print("0.20 - 0.30: ", len(count_3000_4000))
+print(">= 0.4: ", len(count_4000_))
 
 
 # In[45]:
@@ -165,8 +122,6 @@ sns.histplot(dataset['mean'])
 
 # In[21]:
 
-
-list(count_0040_0050.index)
 
 
 # In[26]:
