@@ -1,0 +1,6 @@
+inputfile	../Data/Merged/Merged.csv
+divide	578448
+column	13
+pct	0.8
+lr	0.00001
+epochs	5

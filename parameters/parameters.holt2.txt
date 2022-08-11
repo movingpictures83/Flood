@@ -1,0 +1,8 @@
+csvfile	Data/dummy.csv
+trainend	4
+seasonal	true
+trainparam	Temperature
+seasonalperiods	4
+teststart	5
+testend	6
+indexfile	indices.txt

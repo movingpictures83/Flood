@@ -1,0 +1,10 @@
+inputfile	../Merged.csv
+hours	72
+features	13
+K	12
+stagefile	stages.txt
+nonstagefile	nonstages.txt
+units	65
+lr	0.00001
+epochs	2
+slice	578448

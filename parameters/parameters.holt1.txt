@@ -1,0 +1,4 @@
+csvfile	Data/dummy.csv
+trainend	4
+seasonal	false
+trainparam	Humidity
